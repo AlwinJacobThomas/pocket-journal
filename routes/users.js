@@ -25,8 +25,12 @@ router.get('/user-index/:date', (req, res) => {
   let user = req.session.user
   if (user) {
     userHelpers.getDay(req.params.date,user).then((data)=>{
+      let d=data[0].date
+      p=new Date(d)
+      let k=p.toDateString()
+      console.log(k+" "+p)
       let html=domPurify.sanitize(marked.parse(data[0].content))
-      res.render('users/user-day',{data,user,html})
+      res.render('users/user-day',{k,user,html})
     })
   }
   else {

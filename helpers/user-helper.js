@@ -86,13 +86,13 @@ module.exports = {
                     }
                 }]
             ).toArray()
-            console.log(data[0].data)
+            
 
             data.forEach((item) => {
                 newd.push(item.data)
             });
 
-            console.log(newd[0])
+            
             resolve(newd)
 
         })
