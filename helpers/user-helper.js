@@ -62,9 +62,13 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             let newd = []
             let data = await db.get().collection(collection.DATA_COLLECTION).aggregate(
-                [{
-                    $match: { "user": ObjectId(user._id) }
-                }]
+                [   {
+                        $match: { "user": ObjectId(user._id) }
+                    },
+                    { 
+                        $sort : { "data.date" : -1 }
+                    }
+                ]
 
             ).toArray()
 

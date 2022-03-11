@@ -12,7 +12,8 @@ router.get('/', (req, res, next) => {
   let user = req.session.user
   if (user) {
     userHelpers.getAllDetails(user).then((data) => {
-      res.render('users/user-index', { user, data });
+    
+      res.render('users/us-index', { user, data });
     })
 
   }
@@ -28,9 +29,9 @@ router.get('/user-index/:date', (req, res) => {
       let d=data[0].date
       p=new Date(d)
       let k=p.toDateString()
-      console.log(k+" "+p)
+      
       let html=domPurify.sanitize(marked.parse(data[0].content))
-      res.render('users/user-day',{k,user,html})
+      res.render('users/us-day',{k,user,html})
     })
   }
   else {
@@ -44,7 +45,7 @@ router.post('/search',(req,res)=>{
   console.log(search)
   if (user) {
     userHelpers.getSearch(search,user).then((result)=>{
-      res.render('users/search',{user,result,search})
+      res.render('users/us-search',{user,result,search})
     })
   }
   else{
@@ -59,7 +60,7 @@ router.get('/add-journal', (req, res) => {
   if (user) {
     let user = req.session.user
     
-    res.render('users/add-journal', { user })
+    res.render('users/us-add', { user })
   }
   else {
     res.redirect('/')
@@ -68,11 +69,15 @@ router.get('/add-journal', (req, res) => {
 router.post('/add-journal', (req, res) => {
   let user = req.session.user
   if (user) {
-
-    let date=new Date(req.body.date)
-    let data= date.toDateString()
-    console.log(data)
-    userHelpers.addDetails(user._id, req.body).then(() => {
+    
+    let d=req.body.date
+    let data=req.body
+    p=new Date(d)
+    let k={day:p.toDateString()}
+    
+    let dat = Object.assign(data,k);
+    console.log(dat)
+    userHelpers.addDetails(user._id,dat).then(() => {
       res.redirect('/user')
 
     })

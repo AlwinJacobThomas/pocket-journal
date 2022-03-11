@@ -39,9 +39,7 @@ router.get('/logout', (req, res) => {
   req.session.destroy()
   res.redirect('/')
 })
-router.get('/signup', function (req, res, next) {
-  res.render('signup');
-});
+
 
 router.post('/signup', (req, res) => {
   let date_ob = new Date();
