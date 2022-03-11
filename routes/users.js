@@ -72,7 +72,7 @@ router.post('/add-journal', (req, res) => {
     
     let d=req.body.date
     let data=req.body
-    p=new Date(d)
+    let p=new Date(d)
     let k={day:p.toDateString()}
     
     let dat = Object.assign(data,k);

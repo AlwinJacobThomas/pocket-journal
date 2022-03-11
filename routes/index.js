@@ -7,12 +7,12 @@ const { ObjectId } = require("mongodb");
 /* GET home page. */
 router.get('/', function (req, res, next) {
   let user = req.session.user
-    if (user) {
-      res.redirect('/user');
-    }
-    else {
-      res.render('index',{user});
-    }
+  if (user) {
+    res.redirect('/user');
+  }
+  else {
+    res.render('index', { user });
+  }
 });
 
 router.get('/login', (req, res) => {
@@ -23,9 +23,9 @@ router.get('/login', (req, res) => {
     req.session.loginErr = false
   }
 });
-router.post('/login', (req,res) => {
+router.post('/login', (req, res) => {
   userHelpers.doLogin(req.body).then((response) => {
-    if(response.status) {
+    if (response.status) {
       req.session.loginStatus = true
       req.session.user = response.user
       res.redirect('/user')
@@ -43,15 +43,8 @@ router.get('/logout', (req, res) => {
 
 router.post('/signup', (req, res) => {
   let date_ob = new Date();
-  let date = ("0" + date_ob.getDate()).slice(-2);
-// current month
-let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-// current year
-let year = date_ob.getFullYear();
-
+  console.log(date_ob)
   userHelpers.doSignup(req.body).then((response) => {
-    userHelpers.addDetails(response,{date:year + "-" + month + "-" + date,content:"Account Created"})
-    
     res.redirect('/login')
   })
 })
