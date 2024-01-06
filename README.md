@@ -1,7 +1,7 @@
 # Pocket-Dairy
 An Express-Mongo Pocket Diary project
 ___
-[Video]([https://website-name.com](https://youtu.be/VS3QPgz3fic))
+[Watch Video](https://youtu.be/VS3QPgz3fic]
 ## This is a Pocket Diary project which can do the following things:
 * Users should be able to login 
 * Able to write there diary in markdown 
