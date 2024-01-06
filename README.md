@@ -1,7 +1,8 @@
 # Pocket-Dairy
-An Express-Mongo Pocket Dairy project
+An Express-Mongo Pocket Diary project
 ___
-## This is a Pocket Dairy project which can do the following things:
+[Video]([https://website-name.com](https://youtu.be/VS3QPgz3fic))
+## This is a Pocket Diary project which can do the following things:
 * Users should be able to login 
 * Able to write there diary in markdown 
 * Save it and see other diary 
